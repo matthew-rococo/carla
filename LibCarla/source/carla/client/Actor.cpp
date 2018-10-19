@@ -18,6 +18,11 @@ namespace client {
     return GetWorld()->GetClient().GetActorTransform(*this);
   }
 
+  VehicleControl Actor::GetControl() {
+    //This method is used to get the autopiloted vehicle control
+    return GetWorld()->GetClient().GetActorControl(*this);
+  }
+
   bool Actor::SetLocation(const Location &location) {
     return GetWorld()->GetClient().SetActorLocation(*this, location);
   }

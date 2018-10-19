@@ -80,6 +80,13 @@ public:
   UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
   float GetMaximumSteerAngle() const;
 
+  ///Get the current control of the Vehicle 
+  UFUNCTION(Category = "CARLA Wheeled Vehicle", BlueprintCallable)
+    FVehicleControl GetVehicleControl() const
+  {
+    return VehicleControlSetted;
+  }
+
   /// @}
   // ===========================================================================
   /// @name Set functions
@@ -142,4 +149,8 @@ private:
 
   UPROPERTY()
   bool bIsInReverse = false;
+
+  //Used to save the control setting of the vehicle
+  UPROPERTY(Category = "CARLA Wheeled Vehicle", EditAnywhere)
+  FVehicleControl VehicleControlSetted;
 };

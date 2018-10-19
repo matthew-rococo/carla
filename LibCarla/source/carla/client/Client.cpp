@@ -67,6 +67,10 @@ namespace client {
     return Call<Transform>("get_actor_transform", actor.Serialize());
   }
 
+  VehicleControl Client::GetActorControl(Actor &actor) {
+    return Call<VehicleControl>("get_actor_control", actor.Serialize());
+  }
+
   bool Client::SetActorLocation(Actor &actor, const Location &location) {
     return Call<bool>("set_actor_location", actor.Serialize(), location);
   }

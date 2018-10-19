@@ -84,6 +84,8 @@ namespace client {
 
     Transform GetActorTransform(Actor &actor);
 
+    VehicleControl GetActorControl(Actor &actor);
+
     bool SetActorLocation(Actor &actor, const Location &location);
 
     bool SetActorTransform(Actor &actor, const Transform &transform);

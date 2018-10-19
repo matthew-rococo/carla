@@ -43,6 +43,8 @@ namespace client {
 
     Transform GetTransform();
 
+    VehicleControl GetControl();
+
     bool SetLocation(const Location &location);
 
     bool SetTransform(const Transform &transform);

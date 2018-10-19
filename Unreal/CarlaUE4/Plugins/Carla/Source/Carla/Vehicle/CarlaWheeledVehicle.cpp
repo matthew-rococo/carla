@@ -28,6 +28,15 @@ ACarlaWheeledVehicle::ACarlaWheeledVehicle(const FObjectInitializer& ObjectIniti
   VehicleAgentComponent->SetupAttachment(RootComponent);
 
   GetVehicleMovementComponent()->bReverseAsBrake = false;
+
+  //initial the VehicleControlSetted to zero ,no need for this
+  /*
+  VehicleControlSetted.Throttle = 0.0f;
+  VehicleControlSetted.Steer = 0.0f;
+  VehicleControlSetted.Brake = 0.0f;
+  VehicleControlSetted.bHandBrake = false;
+  VehicleControlSetted.bReverse = false;
+  */
 }
 
 ACarlaWheeledVehicle::~ACarlaWheeledVehicle() {}
@@ -81,6 +90,8 @@ void ACarlaWheeledVehicle::ApplyVehicleControl(const FVehicleControl &VehicleCon
   SetBrakeInput(VehicleControl.Brake);
   SetHandbrakeInput(VehicleControl.bHandBrake);
   SetReverse(VehicleControl.bReverse);
+  //save the current setting 
+  VehicleControlSetted = VehicleControl;
 }
 
 void ACarlaWheeledVehicle::SetThrottleInput(const float Value)

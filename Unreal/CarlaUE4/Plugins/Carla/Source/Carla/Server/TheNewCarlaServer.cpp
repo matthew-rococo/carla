@@ -248,6 +248,19 @@ void FTheNewCarlaServer::FPimpl::BindActions()
     return {ActorView.GetActor()->GetActorTransform()};
   });
 
+  Server.BindSync("get_actor_control", [this](cr::Actor Actor) -> cr::VehicleControl {
+    RequireEpisode();
+    auto ActorView = Episode->GetActorRegistry().Find(Actor.id);
+    if (!ActorView.IsValid() || ActorView.GetActor()->IsPendingKill()) {
+      RespondErrorStr("unable to get actor control: actor not found");
+    }
+    auto Vehicle = Cast<ACarlaWheeledVehicle>(ActorView.GetActor());
+    if (Vehicle == nullptr) {
+      RespondErrorStr("unable to get control: actor is not a vehicle");
+    }
+    return {Vehicle->GetVehicleControl()};
+  });
+
   Server.BindSync("set_actor_location", [this](
       cr::Actor Actor,
       cr::Location Location) -> bool {
